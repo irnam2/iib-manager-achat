@@ -495,6 +495,54 @@
             opacity: 0.6;
         }
 
+        /* Styles pour les popups */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #1a1a3e;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            border: 1px solid #00d4ff;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
+        }
+        .modal-content button {
+            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+            border: none;
+            padding: 12px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        .close {
+            float: right;
+            font-size: 28px;
+            cursor: pointer;
+            color: #aaa;
+        }
+        .close:hover { color: white; }
+
         @media (max-width: 900px) {
             .hero .container {
                 grid-template-columns: 1fr;
@@ -531,7 +579,7 @@
                 <a href="#features">Fonctionnalités</a>
                 <a href="#pricing">Tarifs</a>
                 <a href="#faq">FAQ</a>
-                <button class="btn-outline" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Acheter</button>
+                <button class="btn-outline" onclick="openModal('modal-individuelle')">Acheter</button>
             </div>
         </div>
     </header>
@@ -552,7 +600,7 @@
                     <span><i class="fas fa-check-circle"></i> Mises à jour gratuites à vie</span>
                 </div>
                 <div class="btn-group">
-                    <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+                    <button class="btn-primary" onclick="openModal('modal-individuelle')">
                         <i class="fas fa-shopping-cart"></i> Acheter - 29,90€
                     </button>
                     <button class="btn-secondary" onclick="alert('Contactez-nous pour obtenir la version d\'essai de 15 jours : irnammohamed.dev@gmail.com')">
@@ -669,7 +717,7 @@
                         <li><i class="fas fa-check"></i> Transfert de licence (3x)</li>
                         <li><i class="fas fa-check"></i> 1 ordinateur</li>
                     </ul>
-                    <button class="btn-primary" onclick="window.location.href='https://irnam2.github.io/IIB-Manager/'">
+                    <button class="btn-primary" onclick="openModal('modal-individuelle')">
                         <i class="fas fa-shopping-cart"></i> Acheter - 29,90€
                     </button>
                 </div>
@@ -684,13 +732,13 @@
                         <li><i class="fas fa-check"></i> 3 ordinateurs</li>
                         <li><i class="fas fa-check"></i> Transfert de licence inclus</li>
                     </ul>
-                    <button class="btn-primary" onclick="window.location.href='https://irnam2.github.io/IIB-Manager/'">
+                    <button class="btn-primary" onclick="openModal('modal-famille')">
                         <i class="fas fa-shopping-cart"></i> Acheter - 49,90€
                     </button>
                 </div>
             </div>
             <p style="text-align: center; margin-top: 32px; font-size: 12px; opacity: 0.5;">
-                <i class="fas fa-lock"></i> Paiement sécurisé - Stripe / PayPal
+                <i class="fas fa-lock"></i> Paiement sécurisé
             </p>
         </div>
     </section>
@@ -770,7 +818,35 @@
         </div>
     </footer>
 
+    <!-- Popups -->
+    <div id="modal-individuelle" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-individuelle')">&times;</span>
+            <h3>Demande de licence individuelle (29,90€)</h3>
+            <form action="https://formspree.io/f/xnjwrwlb" method="POST">
+                <input type="email" name="email" placeholder="Votre email Google" required>
+                <input type="hidden" name="licence" value="Individuelle - 29,90€">
+                <button type="submit">Envoyer ma demande</button>
+            </form>
+            <p style="font-size: 12px; margin-top: 15px;">Je vous enverrai un lien de paiement sécurisé Payoneer.</p>
+        </div>
+    </div>
+
+    <div id="modal-famille" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-famille')">&times;</span>
+            <h3>Demande de licence famille (49,90€)</h3>
+            <form action="https://formspree.io/f/mjglzlja" method="POST">
+                <input type="email" name="email" placeholder="Votre email Google" required>
+                <input type="hidden" name="licence" value="Famille - 49,90€">
+                <button type="submit">Envoyer ma demande</button>
+            </form>
+            <p style="font-size: 12px; margin-top: 15px;">Je vous enverrai un lien de paiement sécurisé Payoneer.</p>
+        </div>
+    </div>
+
     <script>
+        // FAQ Accordéon
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
@@ -780,6 +856,19 @@
                 });
             });
         });
+
+        // Fonctions pour les popups
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target.classList && event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
