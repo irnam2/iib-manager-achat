@@ -93,6 +93,29 @@
             color: #00d4ff;
         }
 
+        .lang-selector {
+            display: flex;
+            gap: 8px;
+            margin-left: 20px;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: #00d4ff;
+            color: #1a1a3e;
+            border-color: #00d4ff;
+        }
+
         .btn-outline {
             border: 2px solid #00d4ff;
             background: transparent;
@@ -495,7 +518,6 @@
             opacity: 0.6;
         }
 
-        /* Styles pour les popups */
         .modal {
             display: none;
             position: fixed;
@@ -508,6 +530,7 @@
             align-items: center;
             z-index: 1000;
         }
+
         .modal-content {
             background: #1a1a3e;
             padding: 30px;
@@ -516,6 +539,7 @@
             max-width: 450px;
             border: 1px solid #00d4ff;
         }
+
         .modal-content input {
             width: 100%;
             padding: 12px;
@@ -525,6 +549,7 @@
             border-radius: 8px;
             color: white;
         }
+
         .modal-content button {
             background: linear-gradient(135deg, #00d4ff, #7b2cbf);
             border: none;
@@ -535,12 +560,14 @@
             cursor: pointer;
             width: 100%;
         }
+
         .close {
             float: right;
             font-size: 28px;
             cursor: pointer;
             color: #aaa;
         }
+
         .close:hover { color: white; }
 
         @media (max-width: 900px) {
@@ -576,10 +603,15 @@
                 </div>
             </div>
             <div class="nav">
-                <a href="#features">Fonctionnalités</a>
-                <a href="#pricing">Tarifs</a>
-                <a href="#faq">FAQ</a>
-                <button class="btn-outline" onclick="openModal('modal-individuelle')">Acheter</button>
+                <a href="#features" data-key="nav_features">Fonctionnalités</a>
+                <a href="#pricing" data-key="nav_pricing">Tarifs</a>
+                <a href="#faq" data-key="nav_faq">FAQ</a>
+                <button class="btn-outline" onclick="openModal('modal-individuelle')" data-key="btn_buy">Acheter</button>
+                <div class="lang-selector">
+                    <button class="lang-btn" onclick="changerLangue('fr')">FR</button>
+                    <button class="lang-btn" onclick="changerLangue('en')">EN</button>
+                    <button class="lang-btn" onclick="changerLangue('ar')">AR</button>
+                </div>
             </div>
         </div>
     </header>
@@ -587,35 +619,35 @@
     <section class="hero">
         <div class="container">
             <div>
-                <div class="hero-badge">
+                <div class="hero-badge" data-key="hero_badge">
                     <i class="fas fa-code"></i> Développé par IRNAM MOHAMED
                 </div>
-                <h1>Sauvegardez vos vidéos et fichiers localement</h1>
-                <p>Un outil professionnel pour archiver vos contenus internet. Simple, efficace et transparent.</p>
+                <h1 data-key="hero_title">Sauvegardez vos vidéos et fichiers localement</h1>
+                <p data-key="hero_desc">Un outil professionnel pour archiver vos contenus internet. Simple, efficace et transparent.</p>
                 <div class="hero-features">
-                    <span><i class="fas fa-check-circle"></i> Téléchargement vidéos (YouTube, TikTok, etc.)</span>
-                    <span><i class="fas fa-check-circle"></i> Téléchargement fichiers (PDF, ZIP, images, etc.)</span>
-                    <span><i class="fas fa-check-circle"></i> Gestionnaire de téléchargements avec pause/reprise</span>
-                    <span><i class="fas fa-check-circle"></i> Extension navigateur (capture automatique)</span>
-                    <span><i class="fas fa-check-circle"></i> Mises à jour gratuites à vie</span>
+                    <span><i class="fas fa-check-circle"></i> <span data-key="feature1">Téléchargement vidéos (YouTube, TikTok, etc.)</span></span>
+                    <span><i class="fas fa-check-circle"></i> <span data-key="feature2">Téléchargement fichiers (PDF, ZIP, images, etc.)</span></span>
+                    <span><i class="fas fa-check-circle"></i> <span data-key="feature3">Gestionnaire de téléchargements avec pause/reprise</span></span>
+                    <span><i class="fas fa-check-circle"></i> <span data-key="feature4">Extension navigateur (capture automatique)</span></span>
+                    <span><i class="fas fa-check-circle"></i> <span data-key="feature5">Mises à jour gratuites à vie</span></span>
                 </div>
                 <div class="btn-group">
                     <button class="btn-primary" onclick="openModal('modal-individuelle')">
-                        <i class="fas fa-shopping-cart"></i> Acheter - 29,90€
+                        <i class="fas fa-shopping-cart"></i> <span data-key="btn_buy_now">Acheter - 29,90€</span>
                     </button>
-                    <button class="btn-secondary" onclick="alert('Contactez-nous pour obtenir la version d\'essai de 15 jours : irnammohamed.dev@gmail.com')">
-                        <i class="fas fa-download"></i> Essai gratuit 15j
+                    <button class="btn-secondary" onclick="alert('Contactez-nous : irnammohamed.dev@gmail.com')">
+                        <i class="fas fa-download"></i> <span data-key="btn_trial">Essai gratuit 15j</span>
                     </button>
                 </div>
                 <div class="trust-badge">
-                    <span><i class="fas fa-shield-alt"></i> Licence à vie</span>
-                    <span><i class="fas fa-sync-alt"></i> Mises à jour incluses</span>
-                    <span><i class="fas fa-headset"></i> Support technique</span>
+                    <span><i class="fas fa-shield-alt"></i> <span data-key="trust1">Licence à vie</span></span>
+                    <span><i class="fas fa-sync-alt"></i> <span data-key="trust2">Mises à jour incluses</span></span>
+                    <span><i class="fas fa-headset"></i> <span data-key="trust3">Support technique</span></span>
                 </div>
             </div>
             <div class="hero-image">
                 <img src="https://placehold.co/500x400/1a1a3e/00d4ff?text=IIB+Manager+Interface" alt="IIB Manager">
-                <p style="margin-top: 16px; font-size: 12px; opacity: 0.6;">Interface intuitive - Windows 10/11</p>
+                <p style="margin-top: 16px; font-size: 12px; opacity: 0.6;" data-key="hero_caption">Interface intuitive - Windows 10/11</p>
             </div>
         </div>
     </section>
@@ -623,39 +655,39 @@
     <section id="features" class="features">
         <div class="container">
             <div class="section-title">
-                <h2>Fonctionnalités principales</h2>
-                <p>Ce que fait réellement IIB Manager</p>
+                <h2 data-key="features_title">Fonctionnalités principales</h2>
+                <p data-key="features_subtitle">Ce que fait réellement IIB Manager</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fab fa-youtube"></i></div>
-                    <h3>Téléchargement vidéo</h3>
-                    <p>YouTube, TikTok, Dailymotion, Vimeo, Facebook, Instagram, Twitch. Jusqu'à la meilleure qualité disponible.</p>
+                    <h3 data-key="card1_title">Téléchargement vidéo</h3>
+                    <p data-key="card1_desc">YouTube, TikTok, Dailymotion, Vimeo, Facebook, Instagram, Twitch. Jusqu'à la meilleure qualité disponible.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
-                    <h3>Téléchargement fichier</h3>
-                    <p>PDF, images, ZIP, documents. Téléchargez tout type de fichier depuis n'importe quelle URL.</p>
+                    <h3 data-key="card2_title">Téléchargement fichier</h3>
+                    <p data-key="card2_desc">PDF, images, ZIP, documents. Téléchargez tout type de fichier depuis n'importe quelle URL.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-pause-circle"></i></div>
-                    <h3>Pause et reprise</h3>
-                    <p>Interrompez et reprenez vos téléchargements à tout moment. Sauvegarde automatique de la progression.</p>
+                    <h3 data-key="card3_title">Pause et reprise</h3>
+                    <p data-key="card3_desc">Interrompez et reprenez vos téléchargements à tout moment. Sauvegarde automatique de la progression.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-history"></i></div>
-                    <h3>Historique complet</h3>
-                    <p>Consultez tous vos téléchargements passés. Ne perdez jamais la trace de vos sauvegardes.</p>
+                    <h3 data-key="card4_title">Historique complet</h3>
+                    <p data-key="card4_desc">Consultez tous vos téléchargements passés. Ne perdez jamais la trace de vos sauvegardes.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-chrome"></i></div>
-                    <h3>Extension navigateur</h3>
-                    <p>Capture automatique des URLs depuis votre navigateur. Compatible Chrome, Firefox, Edge.</p>
+                    <h3 data-key="card5_title">Extension navigateur</h3>
+                    <p data-key="card5_desc">Capture automatique des URLs depuis votre navigateur. Compatible Chrome, Firefox, Edge.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-folder-open"></i></div>
-                    <h3>Organisation automatique</h3>
-                    <p>Dossiers dédiés pour vidéos et fichiers. Gestionnaire intégré pour vos téléchargements actifs.</p>
+                    <h3 data-key="card6_title">Organisation automatique</h3>
+                    <p data-key="card6_desc">Dossiers dédiés pour vidéos et fichiers. Gestionnaire intégré pour vos téléchargements actifs.</p>
                 </div>
             </div>
         </div>
@@ -664,8 +696,8 @@
     <section class="supported">
         <div class="container">
             <div class="section-title">
-                <h2>Sites et formats supportés</h2>
-                <p>Basé sur yt-dlp et requests - Compatibilité évolutive</p>
+                <h2 data-key="sites_title">Sites et formats supportés</h2>
+                <p data-key="sites_subtitle">Basé sur yt-dlp et requests - Compatibilité évolutive</p>
             </div>
             <div class="sites-grid">
                 <div class="site-badge"><i class="fab fa-youtube"></i> YouTube</div>
@@ -680,65 +712,65 @@
                 <div class="site-badge"><i class="fas fa-file-image"></i> Images</div>
                 <div class="site-badge"><i class="fas fa-file-archive"></i> ZIP/RAR/7Z</div>
             </div>
-            <p style="text-align: center; margin-top: 32px; font-size: 13px; opacity: 0.6;">* La compatibilité dépend des sites tiers. Des mises à jour régulières maintiennent le support.</p>
+            <p style="text-align: center; margin-top: 32px; font-size: 13px; opacity: 0.6;" data-key="sites_note">* La compatibilité dépend des sites tiers. Des mises à jour régulières maintiennent le support.</p>
         </div>
     </section>
 
     <section id="pricing" class="pricing">
         <div class="container">
             <div class="section-title">
-                <h2>Licence à vie - Paiement unique</h2>
-                <p>Prix honnête pour un logiciel qui fonctionne</p>
+                <h2 data-key="pricing_title">Licence à vie - Paiement unique</h2>
+                <p data-key="pricing_subtitle">Prix honnête pour un logiciel qui fonctionne</p>
             </div>
             <div class="pricing-cards">
                 <div class="pricing-card">
-                    <h3>Essai gratuit</h3>
+                    <h3 data-key="trial_name">Essai gratuit</h3>
                     <div class="price">0€</div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 15 jours d'essai complet</li>
-                        <li><i class="fas fa-check"></i> Toutes fonctionnalités incluses</li>
-                        <li><i class="fas fa-check"></i> Support par email</li>
-                        <li><i class="fas fa-times"></i> Mises à jour gratuites</li>
-                        <li><i class="fa-regular fa-star"></i> Licence individuelle</li>
+                        <li><i class="fas fa-check"></i> <span data-key="trial_feat1">15 jours d'essai complet</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="trial_feat2">Toutes fonctionnalités incluses</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="trial_feat3">Support par email</span></li>
+                        <li><i class="fas fa-times"></i> <span data-key="trial_feat4">Mises à jour gratuites</span></li>
+                        <li><i class="fa-regular fa-star"></i> <span data-key="trial_feat5">Licence individuelle</span></li>
                     </ul>
-                    <button class="btn-secondary" onclick="alert('Contact : irnammohamed.dev@gmail.com pour l\'essai')">
-                        <i class="fas fa-envelope"></i> Demander l'essai
+                    <button class="btn-secondary" onclick="alert('Contact : irnammohamed.dev@gmail.com')">
+                        <i class="fas fa-envelope"></i> <span data-key="trial_btn">Demander l'essai</span>
                     </button>
                 </div>
 
                 <div class="pricing-card popular">
-                    <div class="popular-badge">⭐ Recommandé</div>
-                    <h3>Licence Individuelle</h3>
+                    <div class="popular-badge">⭐ <span data-key="popular_badge">Recommandé</span></div>
+                    <h3 data-key="individual_name">Licence Individuelle</h3>
                     <div class="price">29,90€ <small>TTC</small></div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Toutes fonctionnalités</li>
-                        <li><i class="fas fa-check"></i> Mises à jour gratuites à vie</li>
-                        <li><i class="fas fa-check"></i> Support technique</li>
-                        <li><i class="fas fa-check"></i> Transfert de licence (3x)</li>
-                        <li><i class="fas fa-check"></i> 1 ordinateur</li>
+                        <li><i class="fas fa-check"></i> <span data-key="individual_feat1">Toutes fonctionnalités</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="individual_feat2">Mises à jour gratuites à vie</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="individual_feat3">Support technique</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="individual_feat4">Transfert de licence (3x)</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="individual_feat5">1 ordinateur</span></li>
                     </ul>
                     <button class="btn-primary" onclick="openModal('modal-individuelle')">
-                        <i class="fas fa-shopping-cart"></i> Acheter - 29,90€
+                        <i class="fas fa-shopping-cart"></i> <span data-key="individual_btn">Acheter - 29,90€</span>
                     </button>
                 </div>
 
                 <div class="pricing-card">
-                    <h3>Licence Famille</h3>
+                    <h3 data-key="family_name">Licence Famille</h3>
                     <div class="price">49,90€ <small>TTC</small></div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Toutes fonctionnalités</li>
-                        <li><i class="fas fa-check"></i> Mises à jour gratuites à vie</li>
-                        <li><i class="fas fa-check"></i> Support prioritaire</li>
-                        <li><i class="fas fa-check"></i> 3 ordinateurs</li>
-                        <li><i class="fas fa-check"></i> Transfert de licence inclus</li>
+                        <li><i class="fas fa-check"></i> <span data-key="family_feat1">Toutes fonctionnalités</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="family_feat2">Mises à jour gratuites à vie</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="family_feat3">Support prioritaire</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="family_feat4">3 ordinateurs</span></li>
+                        <li><i class="fas fa-check"></i> <span data-key="family_feat5">Transfert de licence inclus</span></li>
                     </ul>
                     <button class="btn-primary" onclick="openModal('modal-famille')">
-                        <i class="fas fa-shopping-cart"></i> Acheter - 49,90€
+                        <i class="fas fa-shopping-cart"></i> <span data-key="family_btn">Acheter - 49,90€</span>
                     </button>
                 </div>
             </div>
             <p style="text-align: center; margin-top: 32px; font-size: 12px; opacity: 0.5;">
-                <i class="fas fa-lock"></i> Paiement sécurisé
+                <i class="fas fa-lock"></i> <span data-key="secure_payment">Paiement sécurisé</span>
             </p>
         </div>
     </section>
@@ -746,54 +778,29 @@
     <section id="faq" class="faq">
         <div class="container">
             <div class="section-title">
-                <h2>Questions fréquentes</h2>
-                <p>Transparence totale</p>
+                <h2 data-key="faq_title">Questions fréquentes</h2>
+                <p data-key="faq_subtitle">Transparence totale</p>
             </div>
             <div class="faq-grid">
                 <div class="faq-item">
-                    <div class="faq-question">
-                        Le logiciel est-il vraiment sans abonnement ?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        Oui, vous payez une fois et vous utilisez le logiciel à vie. Aucun abonnement caché.
-                    </div>
+                    <div class="faq-question" data-key="faq1_q">Le logiciel est-il vraiment sans abonnement ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer" data-key="faq1_a">Oui, vous payez une fois et vous utilisez le logiciel à vie. Aucun abonnement caché.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
-                        Puis-je télécharger des vidéos YouTube en 4K ?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        Cela dépend de ce que YouTube met à disposition. Le logiciel télécharge la meilleure qualité disponible pour la vidéo.
-                    </div>
+                    <div class="faq-question" data-key="faq2_q">Puis-je télécharger des vidéos YouTube en 4K ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer" data-key="faq2_a">Cela dépend de ce que YouTube met à disposition. Le logiciel télécharge la meilleure qualité disponible pour la vidéo.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
-                        Est-ce légal de télécharger des vidéos ?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        IIB Manager est un outil technique. L'utilisateur est seul responsable de l'usage qu'il en fait et du respect des droits d'auteur.
-                    </div>
+                    <div class="faq-question" data-key="faq3_q">Est-ce légal de télécharger des vidéos ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer" data-key="faq3_a">IIB Manager est un outil technique. L'utilisateur est seul responsable de l'usage qu'il en fait et du respect des droits d'auteur.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
-                        Puis-je transférer ma licence si je change d'ordinateur ?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        Oui, vous avez droit à 3 transferts. Contactez le support pour effectuer la procédure.
-                    </div>
+                    <div class="faq-question" data-key="faq4_q">Puis-je transférer ma licence si je change d'ordinateur ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer" data-key="faq4_a">Oui, vous avez droit à 3 transferts. Contactez le support pour effectuer la procédure.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question">
-                        Que se passe-t-il après la période d'essai de 15 jours ?
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        L'essai vous permet de tester toutes les fonctionnalités. Après 15 jours, vous devez acheter une licence pour continuer à utiliser le logiciel.
-                    </div>
+                    <div class="faq-question" data-key="faq5_q">Que se passe-t-il après la période d'essai de 15 jours ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer" data-key="faq5_a">L'essai vous permet de tester toutes les fonctionnalités. Après 15 jours, vous devez acheter une licence pour continuer à utiliser le logiciel.</div>
                 </div>
             </div>
         </div>
@@ -801,20 +808,18 @@
 
     <section class="cta">
         <div class="container">
-            <h2>Prêt à essayer IIB Manager ?</h2>
-            <p>15 jours d'essai gratuit - Aucune obligation d'achat</p>
+            <h2 data-key="cta_title">Prêt à essayer IIB Manager ?</h2>
+            <p data-key="cta_desc">15 jours d'essai gratuit - Aucune obligation d'achat</p>
             <button class="btn-primary" onclick="alert('Contactez-nous : irnammohamed.dev@gmail.com')">
-                <i class="fas fa-envelope"></i> Contacter pour l'essai
+                <i class="fas fa-envelope"></i> <span data-key="cta_btn">Contacter pour l'essai</span>
             </button>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>© 2026 IRNAM MOHAMED - Tous droits réservés</p>
-            <p style="margin-top: 8px;">
-                <a href="#" style="color: #00d4ff; text-decoration: none;">irnammohamed.dev@gmail.com</a>
-            </p>
+            <p data-key="footer_copyright">© 2026 IRNAM MOHAMED - Tous droits réservés</p>
+            <p style="margin-top: 8px;"><a href="#" style="color: #00d4ff; text-decoration: none;">irnammohamed.dev@gmail.com</a></p>
         </div>
     </footer>
 
@@ -822,35 +827,181 @@
     <div id="modal-individuelle" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-individuelle')">&times;</span>
-            <h3>Demande de licence individuelle (29,90€)</h3>
+            <h3 data-key="modal_individual_title">Demande de licence individuelle (29,90€)</h3>
             <form action="https://formspree.io/f/xnjwrwlb" method="POST">
-                <input type="text" name="prénom" placeholder="Votre prénom" required>
-                <input type="text" name="nome" placeholder="Votre nom" required>
-                <input type="email" name="email" placeholder="Votre email Google" required>
+                <input type="text" name="first name" placeholder="Prénom" data-key="modal_firstname" required>
+                <input type="text" name="Last Name" placeholder="Nom" data-key="modal_lastname" required>
+                <input type="email" name="email" placeholder="Email Google" data-key="modal_email" required>
                 <input type="hidden" name="license" value="Individual - 29,90€">
-                <button type="submit">Envoyer ma demande</button>
+                <button type="submit" data-key="modal_submit">Envoyer ma demande</button>
             </form>
-            <p style="font-size: 12px; margin-top: 15px;">On vous enverrai un lien de paiement sécurisé Payoneer.</p>
+            <p style="font-size: 12px; margin-top: 15px;" data-key="modal_note">On vous enverra un lien de paiement sécurisé Payoneer.</p>
         </div>
     </div>
 
     <div id="modal-famille" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('modal-famille')">&times;</span>
-            <h3>Demande de licence famille (49,90€)</h3>
+            <h3 data-key="modal_family_title">Demande de licence famille (49,90€)</h3>
             <form action="https://formspree.io/f/mjglzlja" method="POST">
-                <input type="text" name="prénom" placeholder="Votre prénom" required>
-                <input type="text" name="nom" placeholder="Votre nom" required>
-                <input type="email" name="email" placeholder="Votre email Google" required>
+                <input type="text" name="first name" placeholder="Prénom" data-key="modal_firstname" required>
+                <input type="text" name="Last Name" placeholder="Nom" data-key="modal_lastname" required>
+                <input type="email" name="email" placeholder="Email Google" data-key="modal_email" required>
                 <input type="hidden" name="license" value="Family - 49,90€">
-                <button type="submit">Envoyer ma demande</button>
+                <button type="submit" data-key="modal_submit">Envoyer ma demande</button>
             </form>
-            <p style="font-size: 12px; margin-top: 15px;">On vous enverrai un lien de paiement sécurisé Payoneer.</p>
+            <p style="font-size: 12px; margin-top: 15px;" data-key="modal_note">On vous enverra un lien de paiement sécurisé Payoneer.</p>
         </div>
     </div>
 
     <script>
-        // FAQ Accordéon
+        // Dictionnaire des textes par langue
+        const textes = {
+            fr: {
+                nav_features: "Fonctionnalités", nav_pricing: "Tarifs", nav_faq: "FAQ", btn_buy: "Acheter",
+                hero_badge: "Développé par IRNAM MOHAMED",
+                hero_title: "Sauvegardez vos vidéos et fichiers localement",
+                hero_desc: "Un outil professionnel pour archiver vos contenus internet. Simple, efficace et transparent.",
+                feature1: "Téléchargement vidéos (YouTube, TikTok, etc.)",
+                feature2: "Téléchargement fichiers (PDF, ZIP, images, etc.)",
+                feature3: "Gestionnaire de téléchargements avec pause/reprise",
+                feature4: "Extension navigateur (capture automatique)",
+                feature5: "Mises à jour gratuites à vie",
+                btn_buy_now: "Acheter - 29,90€", btn_trial: "Essai gratuit 15j",
+                trust1: "Licence à vie", trust2: "Mises à jour incluses", trust3: "Support technique",
+                hero_caption: "Interface intuitive - Windows 10/11",
+                features_title: "Fonctionnalités principales", features_subtitle: "Ce que fait réellement IIB Manager",
+                card1_title: "Téléchargement vidéo", card1_desc: "YouTube, TikTok, Dailymotion, Vimeo, Facebook, Instagram, Twitch. Jusqu'à la meilleure qualité disponible.",
+                card2_title: "Téléchargement fichier", card2_desc: "PDF, images, ZIP, documents. Téléchargez tout type de fichier depuis n'importe quelle URL.",
+                card3_title: "Pause et reprise", card3_desc: "Interrompez et reprenez vos téléchargements à tout moment. Sauvegarde automatique de la progression.",
+                card4_title: "Historique complet", card4_desc: "Consultez tous vos téléchargements passés. Ne perdez jamais la trace de vos sauvegardes.",
+                card5_title: "Extension navigateur", card5_desc: "Capture automatique des URLs depuis votre navigateur. Compatible Chrome, Firefox, Edge.",
+                card6_title: "Organisation automatique", card6_desc: "Dossiers dédiés pour vidéos et fichiers. Gestionnaire intégré pour vos téléchargements actifs.",
+                sites_title: "Sites et formats supportés", sites_subtitle: "Basé sur yt-dlp et requests - Compatibilité évolutive",
+                sites_note: "* La compatibilité dépend des sites tiers. Des mises à jour régulières maintiennent le support.",
+                pricing_title: "Licence à vie - Paiement unique", pricing_subtitle: "Prix honnête pour un logiciel qui fonctionne",
+                trial_name: "Essai gratuit", trial_feat1: "15 jours d'essai complet", trial_feat2: "Toutes fonctionnalités incluses", trial_feat3: "Support par email", trial_feat4: "Mises à jour gratuites", trial_feat5: "Licence individuelle", trial_btn: "Demander l'essai",
+                popular_badge: "Recommandé", individual_name: "Licence Individuelle", individual_feat1: "Toutes fonctionnalités", individual_feat2: "Mises à jour gratuites à vie", individual_feat3: "Support technique", individual_feat4: "Transfert de licence (3x)", individual_feat5: "1 ordinateur", individual_btn: "Acheter - 29,90€",
+                family_name: "Licence Famille", family_feat1: "Toutes fonctionnalités", family_feat2: "Mises à jour gratuites à vie", family_feat3: "Support prioritaire", family_feat4: "3 ordinateurs", family_feat5: "Transfert de licence inclus", family_btn: "Acheter - 49,90€",
+                secure_payment: "Paiement sécurisé",
+                faq_title: "Questions fréquentes", faq_subtitle: "Transparence totale",
+                faq1_q: "Le logiciel est-il vraiment sans abonnement ?", faq1_a: "Oui, vous payez une fois et vous utilisez le logiciel à vie. Aucun abonnement caché.",
+                faq2_q: "Puis-je télécharger des vidéos YouTube en 4K ?", faq2_a: "Cela dépend de ce que YouTube met à disposition. Le logiciel télécharge la meilleure qualité disponible pour la vidéo.",
+                faq3_q: "Est-ce légal de télécharger des vidéos ?", faq3_a: "IIB Manager est un outil technique. L'utilisateur est seul responsable de l'usage qu'il en fait et du respect des droits d'auteur.",
+                faq4_q: "Puis-je transférer ma licence si je change d'ordinateur ?", faq4_a: "Oui, vous avez droit à 3 transferts. Contactez le support pour effectuer la procédure.",
+                faq5_q: "Que se passe-t-il après la période d'essai de 15 jours ?", faq5_a: "L'essai vous permet de tester toutes les fonctionnalités. Après 15 jours, vous devez acheter une licence pour continuer à utiliser le logiciel.",
+                cta_title: "Prêt à essayer IIB Manager ?", cta_desc: "15 jours d'essai gratuit - Aucune obligation d'achat", cta_btn: "Contacter pour l'essai",
+                footer_copyright: "© 2026 IRNAM MOHAMED - Tous droits réservés",
+                modal_individual_title: "Demande de licence individuelle (29,90€)", modal_family_title: "Demande de licence famille (49,90€)",
+                modal_firstname: "Prénom", modal_lastname: "Nom", modal_email: "Email Google", modal_submit: "Envoyer ma demande", modal_note: "On vous enverra un lien de paiement sécurisé Payoneer."
+            },
+            en: {
+                nav_features: "Features", nav_pricing: "Pricing", nav_faq: "FAQ", btn_buy: "Buy",
+                hero_badge: "Developed by IRNAM MOHAMED",
+                hero_title: "Backup your videos and files locally",
+                hero_desc: "A professional tool to archive your internet content. Simple, efficient, and transparent.",
+                feature1: "Video download (YouTube, TikTok, etc.)",
+                feature2: "File download (PDF, ZIP, images, etc.)",
+                feature3: "Download manager with pause/resume",
+                feature4: "Browser extension (auto-capture)",
+                feature5: "Free lifetime updates",
+                btn_buy_now: "Buy - €29.90", btn_trial: "Free 15-day trial",
+                trust1: "Lifetime license", trust2: "Updates included", trust3: "Technical support",
+                hero_caption: "Intuitive interface - Windows 10/11",
+                features_title: "Key Features", features_subtitle: "What IIB Manager actually does",
+                card1_title: "Video Download", card1_desc: "YouTube, TikTok, Dailymotion, Vimeo, Facebook, Instagram, Twitch. Up to the best available quality.",
+                card2_title: "File Download", card2_desc: "PDF, images, ZIP, documents. Download any file from any URL.",
+                card3_title: "Pause & Resume", card3_desc: "Interrupt and resume your downloads at any time. Automatic progress saving.",
+                card4_title: "Full History", card4_desc: "View all your past downloads. Never lose track of your backups.",
+                card5_title: "Browser Extension", card5_desc: "Auto-capture URLs from your browser. Compatible with Chrome, Firefox, Edge.",
+                card6_title: "Auto Organization", card6_desc: "Dedicated folders for videos and files. Built-in active download manager.",
+                sites_title: "Supported Sites & Formats", sites_subtitle: "Based on yt-dlp and requests - Evolving compatibility",
+                sites_note: "* Compatibility depends on third-party sites. Regular updates maintain support.",
+                pricing_title: "Lifetime License - One-time payment", pricing_subtitle: "Fair price for software that works",
+                trial_name: "Free Trial", trial_feat1: "15-day full trial", trial_feat2: "All features included", trial_feat3: "Email support", trial_feat4: "Free updates", trial_feat5: "Individual license", trial_btn: "Request trial",
+                popular_badge: "Recommended", individual_name: "Individual License", individual_feat1: "All features", individual_feat2: "Free lifetime updates", individual_feat3: "Technical support", individual_feat4: "License transfer (3x)", individual_feat5: "1 computer", individual_btn: "Buy - €29.90",
+                family_name: "Family License", family_feat1: "All features", family_feat2: "Free lifetime updates", family_feat3: "Priority support", family_feat4: "3 computers", family_feat5: "License transfer included", family_btn: "Buy - €49.90",
+                secure_payment: "Secure payment",
+                faq_title: "Frequently Asked Questions", faq_subtitle: "Full transparency",
+                faq1_q: "Is the software truly subscription-free?", faq1_a: "Yes, pay once and use the software forever. No hidden subscription.",
+                faq2_q: "Can I download YouTube videos in 4K?", faq2_a: "It depends on what YouTube provides. The software downloads the best quality available for the video.",
+                faq3_q: "Is downloading videos legal?", faq3_a: "IIB Manager is a technical tool. The user is solely responsible for how they use it and for respecting copyright.",
+                faq4_q: "Can I transfer my license if I change computers?", faq4_a: "Yes, you have 3 transfers. Contact support to proceed.",
+                faq5_q: "What happens after the 15-day trial period?", faq5_a: "The trial lets you test all features. After 15 days, you need to purchase a license to continue using the software.",
+                cta_title: "Ready to try IIB Manager?", cta_desc: "15-day free trial - No purchase obligation", cta_btn: "Contact for trial",
+                footer_copyright: "© 2026 IRNAM MOHAMED - All rights reserved",
+                modal_individual_title: "Individual License Request (€29.90)", modal_family_title: "Family License Request (€49.90)",
+                modal_firstname: "First name", modal_lastname: "Last name", modal_email: "Google Email", modal_submit: "Send request", modal_note: "We will send you a secure Payoneer payment link."
+            },
+            ar: {
+                nav_features: "الميزات", nav_pricing: "الأسعار", nav_faq: "الأسئلة", btn_buy: "شراء",
+                hero_badge: "تم التطوير بواسطة IRNAM MOHAMED",
+                hero_title: "احفظ مقاطع الفيديو والملفات محلياً",
+                hero_desc: "أداة احترافية لأرشفة محتواك على الإنترنت. بسيطة وفعالة وشفافة.",
+                feature1: "تحميل الفيديوهات (YouTube، TikTok، إلخ)",
+                feature2: "تحميل الملفات (PDF، ZIP، صور، إلخ)",
+                feature3: "مدير تحميل مع إيقاف واستئناف",
+                feature4: "إضافة متصفح (التقاط تلقائي)",
+                feature5: "تحديثات مجانية مدى الحياة",
+                btn_buy_now: "شراء - 29.90€", btn_trial: "تجربة مجانية 15 يوم",
+                trust1: "ترخيص مدى الحياة", trust2: "تحديثات مشمولة", trust3: "دعم فني",
+                hero_caption: "واجهة بديهية - Windows 10/11",
+                features_title: "الميزات الرئيسية", features_subtitle: "ما يفعله IIB Manager فعلياً",
+                card1_title: "تحميل الفيديو", card1_desc: "YouTube، TikTok، Dailymotion، Vimeo، Facebook، Instagram، Twitch. حتى أفضل جودة متاحة.",
+                card2_title: "تحميل الملفات", card2_desc: "PDF، صور، ZIP، مستندات. حمل أي نوع ملف من أي رابط.",
+                card3_title: "إيقاف واستئناف", card3_desc: "أوقف واستأنف تحميلاتك في أي وقت. حفظ تلقائي للتقدم.",
+                card4_title: "سجل كامل", card4_desc: "اطلع على جميع تحميلاتك السابقة. لا تفقد أبداً أثر نسخك الاحتياطية.",
+                card5_title: "إضافة متصفح", card5_desc: "التقاط تلقائي للروابط من متصفحك. متوافق مع Chrome، Firefox، Edge.",
+                card6_title: "تنظيم تلقائي", card6_desc: "مجلدات مخصصة للفيديوهات والملفات. مدير تحميل مدمج.",
+                sites_title: "المواقع والصيغ المدعومة", sites_subtitle: "يعتمد على yt-dlp و requests - توافق متطور",
+                sites_note: "* التوافق يعتمد على المواقع الخارجية. تحديثات منتظمة تحافظ على الدعم.",
+                pricing_title: "ترخيص مدى الحياة - دفع واحد", pricing_subtitle: "سعر عادل لبرنامج يعمل",
+                trial_name: "تجربة مجانية", trial_feat1: "15 يوماً تجربة كاملة", trial_feat2: "جميع الميزات مشمولة", trial_feat3: "دعم بالبريد", trial_feat4: "تحديثات مجانية", trial_feat5: "ترخيص فردي", trial_btn: "طلب تجربة",
+                popular_badge: "موصى به", individual_name: "ترخيص فردي", individual_feat1: "جميع الميزات", individual_feat2: "تحديثات مجانية مدى الحياة", individual_feat3: "دعم فني", individual_feat4: "نقل الترخيص (3 مرات)", individual_feat5: "جهاز واحد", individual_btn: "شراء - 29.90€",
+                family_name: "ترخيص عائلي", family_feat1: "جميع الميزات", family_feat2: "تحديثات مجانية مدى الحياة", family_feat3: "دعم優先", family_feat4: "3 أجهزة", family_feat5: "نقل الترخيص مشمول", family_btn: "شراء - 49.90€",
+                secure_payment: "دفع آمن",
+                faq_title: "الأسئلة الشائعة", faq_subtitle: "شفافية كاملة",
+                faq1_q: "هل البرنامج حقاً بدون اشتراك؟", faq1_a: "نعم، تدفع مرة واحدة وتستخدم البرنامج مدى الحياة. لا يوجد اشتراك مخفي.",
+                faq2_q: "هل يمكنني تحميل فيديوهات YouTube بجودة 4K؟", faq2_a: "يعتمد على ما يوفره YouTube. البرنامج يحمل أفضل جودة متاحة للفيديو.",
+                faq3_q: "هل تحميل الفيديوهات قانوني؟", faq3_a: "IIB Manager أداة تقنية. المستخدم مسؤول وحده عن استخدامه واحترام حقوق النشر.",
+                faq4_q: "هل يمكنني نقل ترخيصي إذا غيرت جهاز الكمبيوتر؟", faq4_a: "نعم، لديك 3 عمليات نقل. اتصل بالدعم للمتابعة.",
+                faq5_q: "ماذا يحدث بعد فترة التجربة 15 يوماً؟", faq5_a: "التجربة تتيح لك اختبار جميع الميزات. بعد 15 يوماً، يجب شراء ترخيص لمواصلة استخدام البرنامج.",
+                cta_title: "هل أنت مستعد لتجربة IIB Manager؟", cta_desc: "15 يوماً تجربة مجانية - بدون التزام بالشراء", cta_btn: "اتصل للتجربة",
+                footer_copyright: "© 2026 IRNAM MOHAMED - جميع الحقوق محفوظة",
+                modal_individual_title: "طلب ترخيص فردي (29.90€)", modal_family_title: "طلب ترخيص عائلي (49.90€)",
+                modal_firstname: "الاسم الأول", modal_lastname: "اسم العائلة", modal_email: "بريد Google", modal_submit: "إرسال الطلب", modal_note: "سنرسل لك رابط دفع Payoneer آمن."
+            }
+        };
+
+        let langueActuelle = 'fr';
+
+        function changerLangue(lang) {
+            langueActuelle = lang;
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (textes[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = textes[lang][key];
+                    } else {
+                        el.innerHTML = textes[lang][key];
+                    }
+                }
+            });
+            document.querySelectorAll('.modal-content input[placeholder]').forEach(input => {
+                const key = input.getAttribute('data-key');
+                if (key && textes[lang][key]) input.placeholder = textes[lang][key];
+            });
+            document.body.style.direction = lang === 'ar' ? 'rtl' : 'ltr';
+            document.body.style.textAlign = lang === 'ar' ? 'right' : 'left';
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if ((lang === 'fr' && btn.innerText === 'FR') || (lang === 'en' && btn.innerText === 'EN') || (lang === 'ar' && btn.innerText === 'AR')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentElement;
@@ -861,18 +1012,15 @@
             });
         });
 
-        // Fonctions pour les popups
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
         window.onclick = function(event) {
             if (event.target.classList && event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
             }
         }
+
+        changerLangue('fr');
     </script>
 </body>
 </html>
